@@ -1,12 +1,20 @@
+import React from "react";
 import FooterBanner from "../components/FooterBanner";
 import HeroBanner from "../components/HeroBanner";
-import { client } from "../components/lib/client";
 import Product from "../components/Product";
+import { client } from "../components/lib/client";
 
 const Home = ({ productsData, bannerData }) => {
+  const renderProducts = () => {
+    return productsData?.map((product) => (
+      <Product key={product._id} product={product} />
+    ));
+  };
+
   return (
     <main className="mx-5">
       <HeroBanner heroBannerData={bannerData} />
+
       <div className="my-10">
         <h2 className="text-center text-4xl font-bold mt-5">
           Best Selling Products
@@ -15,9 +23,7 @@ const Home = ({ productsData, bannerData }) => {
           The best Huawei has to offer.
         </p>
         <div className="flex flex-wrap gap-[15px] justify-center items-center">
-          {productsData?.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
+          {renderProducts()}
         </div>
       </div>
 
@@ -29,11 +35,11 @@ const Home = ({ productsData, bannerData }) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  // query for products
+  // Query for products
   const productsQuery = '*[_type == "product"]';
   const productsData = await client.fetch(productsQuery);
 
-  // query for banner
+  // Query for banner
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
