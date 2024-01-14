@@ -17,6 +17,11 @@ export default {
       title: "Name",
       type: "string",
     },
+        {
+      name: "price",
+      title: "Price",
+      type: "number",
+    },
     {
       name: "slug",
       title: "Slug",
@@ -25,11 +30,6 @@ export default {
         source: "name",
         maxLength: 90,
       },
-    },
-    {
-      name: "price",
-      title: "Price",
-      type: "number",
     },
     {
       name: "details",
