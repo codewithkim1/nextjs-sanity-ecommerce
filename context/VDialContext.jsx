@@ -16,6 +16,7 @@ export const VDialProvider = ({ children }) => {
   // Increase Quantity selected
   const qtyIncrement = () => setQty((prevQty) => prevQty + 1);
 
+
   // Decrease Quantity selected
   const qtyDecrement = () =>
     setQty((prevQty) => (prevQty - 1 < 1 ? 1 : prevQty - 1));
